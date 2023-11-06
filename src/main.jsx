@@ -8,8 +8,11 @@ import {
 import Error from './Pages/Error';
 import Root from './Pages/Root';
 import Login from './Pages/Login';
+import Blog from './Pages/Blog';
 import Register from './Pages/Register';
 import Home from './Pages/Home/Home';
+import AuthProvider from './Provider/AuthProvider';
+import PrivateRoute from './Router/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -31,7 +34,8 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-
+        path: '/blog',
+        element: <PrivateRoute><Blog></Blog></PrivateRoute>
       }
     ]
   },
@@ -39,6 +43,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

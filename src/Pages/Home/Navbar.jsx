@@ -1,6 +1,11 @@
 /* eslint-disable react/no-unknown-property */
+import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom'
+import { AuthContext } from '../../Provider/AuthProvider';
 const Navbar = () => {
+
+
+    const { user, logOut } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -9,6 +14,15 @@ const Navbar = () => {
         <li><NavLink to='/login'>Login</NavLink></li>
     </>
 
+const handleLogOut = () =>{
+    logOut()
+    .then(res =>{
+        console.log(res)
+    })
+    .catch(error => {
+        console.error(error)
+    })
+}
 
     return (
         <div className="navbar bg-base-100">
@@ -22,7 +36,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <Link to='/'>
-                    <div className='w-32 md:w-44'>
+                    <div className='w-28 md:w-44'>
                         <svg
                             viewBox="0 0 370 63.95110310551274"
                             className="css-1j8o68f"
@@ -63,20 +77,25 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-end">
-                <div className="dropdown dropdown-hover">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar m-1">
-                    <div className="w-10 rounded-full menu menu-horizontal">
-                        <img src="https://i.ibb.co/4MKnpsb/Screenshot-309.png" />
+                {
+                    user ? <>
+                    <div className="dropdown dropdown-hover">
+                    <label tabIndex={0} className="mx-2 btn btn-sm md:btn-md btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img src={user?.photoURL} alt='userImg' />
 
-                    </div>
-                </label>
-                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box ">
+                        </div>
+                    </label>
+                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 w-32 shadow bg-base-100 rounded-box ">
                         <li><a>Item 1</a></li>
                         <li><a>Item 2</a></li>
                     </ul>
                 </div>
+                <button onClick={handleLogOut} className='btn btn-sm btn-warning md:ml-2'>Log Out</button>
+                    </> : <Link to='/login'><button className='btn btn-warning md:ml-2'>Login</button></Link>
+                }
+
                 
-                <Link to='/login'><button className='btn btn-warning md:ml-2'>Login</button></Link>
             </div>
         </div>
     );
