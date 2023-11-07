@@ -21,6 +21,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { HelmetProvider } from 'react-helmet-async';
+import Shop from './Pages/Shop';
 
 
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: '/addedFood',
         element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>
+      },
+      {
+        path: '/shop',
+        element: <Shop></Shop>
       }
     ]
   },
