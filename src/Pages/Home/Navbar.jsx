@@ -15,7 +15,7 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/blog'>Blog</NavLink></li>
         <li><NavLink to='/shop'>Shop</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
+        <li><NavLink to='/cart'>Cart</NavLink></li>
     </>
 
 const handleLogOut = () =>{
@@ -35,7 +35,7 @@ const handleLogOut = () =>{
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
                         {links}
                     </ul>
                 </div>
@@ -82,26 +82,25 @@ const handleLogOut = () =>{
 
             <div className="navbar-end">
                 {
-                    user ? <>
+                    user ? <div className='flex items-center'>
                     <div className="dropdown dropdown-hover dropdown-end">
-                    <label tabIndex={0} className="mx-2 btn btn-sm md:btn-md btn-ghost btn-circle avatar">
+                    <label tabIndex={0} className="md:mx-2 btn btn-sm md:btn-md btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img src={user?.photoURL} alt='userImg' />
 
                         </div>
                     </label>
-                    <ul tabIndex={0} className="dropdown-content z-[1] menu  md:w-48 w-32 shadow bg-base-100 rounded-box py-2 ">
+                    <ul tabIndex={0} className="dropdown-content z-[10] menu  md:w-48 w-32 shadow bg-base-100 rounded-box py-2 ">
                         <li><NavLink to='/addFood'>Add Food</NavLink></li>
                         <li><NavLink to='/addedFood'>My Added Foods</NavLink></li>
-                        <li><NavLink to='/order'>My Order</NavLink></li>
+                        <li><NavLink to='/cart'>My Cart</NavLink></li>
                     </ul>
                 </div>
                 <button onClick={handleLogOut} className='btn btn-sm btn-warning md:ml-2'>Log Out</button>
-                    </> : <Link to='/login'><button className='btn btn-warning md:ml-2'>Login</button></Link>
+                    </div> : <Link to='/login'><button className='btn btn-warning md:ml-2'>Login</button></Link>
                 }
 
-                
-            </div>
+                </div>
         </div>
     );
 };

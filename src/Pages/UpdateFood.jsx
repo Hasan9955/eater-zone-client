@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 const UpdateFood = () => {
 
 
-    const { _id, category, description, email, foodName, name, origin, photo, price, quantity } = useLoaderData()
+    const { _id, category, description, email, foodName, name, origin, photo, price, quantity, sold } = useLoaderData()
 
     const handleForm = e => {
 
@@ -24,7 +24,6 @@ const UpdateFood = () => {
         const quantity = parseInt(form.quantity.value)
         const description = form.description.value
         const photo = form.photo.value
-        const sold = 0
 
 
 

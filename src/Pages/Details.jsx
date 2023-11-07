@@ -1,24 +1,31 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 
 
 
 const Details = () => {
+
+    
 
 
     const { _id, foodName, category, email, origin, photo, price, quantity, sold, description } = useLoaderData()
 
     const { user } = useContext(AuthContext)
 
+    const [newSold, setNewSold] = useState(sold || 0)
+    const [newQua, setNewQua] = useState(quantity || 0)
+
 
     const handleCart = e => {
         e.preventDefault()
         const input = e.target
-        const value = input.number.value
+        const value = parseInt(input.number.value)
 
+        
         if(user.email === email) {
             return Swal.fire({
                 icon: "error",
@@ -26,6 +33,32 @@ const Details = () => {
                 text: "You can't purchase your won products!",
               });
         }
+
+
+        const NewQuantity = quantity - value 
+        const TotalSold = sold + value
+
+        const update = {NewQuantity, TotalSold}
+        const postData = {origin, photo, price, id: _id, foodName, category, value, email: user.email}
+        axios.put(`http://localhost:5000/cartUpdate/${_id}`, update)
+        .then(res => {
+            if(res.data.acknowledged){
+                axios.post('http://localhost:5000/cartPost', postData)
+                .then(res => {
+                    if(res.data.acknowledged){
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Congratulations! Your item has been added to your cart.",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          setNewQua(NewQuantity)
+                          setNewSold(TotalSold)
+                    }
+                })
+            }
+        })
 
 
     }
@@ -41,8 +74,8 @@ const Details = () => {
                     <h2 className="card-title">{foodName}</h2>
                     <h4 className="font-bold ">Category: {category}</h4>
                     <h4 className="font-bold ">Origin: {origin}</h4>
-                    <h4 className="font-bold ">Sold: {sold} items</h4>
-                    <h4 className="font-bold ">Available: {quantity} items</h4>
+                    <h4 className="font-bold ">Sold: {newSold} items</h4>
+                    <h4 className="font-bold ">Available: {newQua} items</h4>
                     <h4 className="font-bold text-lg text-amber-600">Price: ${price}</h4>
                     <h4 className="max-w-md ">{description}</h4>
                     <form onSubmit={handleCart} className="card-actions items-center my-2">

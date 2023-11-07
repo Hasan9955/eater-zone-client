@@ -51,7 +51,7 @@ const TopProducts = () => {
                                 <p className=" font-bold">Origin: {product.origin}</p>
                                 <p className="text-lg text-amber-600 font-bold">Price: ${product.price}</p>
                                 <p className=" font-bold">Sold: {product.sold} item</p>
-                                <Link className="card-actions"><button className="btn btn-sm btn-warning">Details</button></Link>
+                                <Link to={`/details/${product._id}`}><button className="border p-2 rounded-full border-amber-600 hover:text-white hover:bg-black hover:border-black">Show Details</button></Link>
                             </div>
                         </div>
                     </div>)
