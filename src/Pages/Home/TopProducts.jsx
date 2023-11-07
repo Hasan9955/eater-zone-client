@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import '../../Css Style/AddedFood.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const TopProducts = () => {
 
@@ -15,24 +15,24 @@ const TopProducts = () => {
     })
 
 
-    if(isPending){
+    if (isPending) {
         return <div className="flex justify-center items-center">
-        <div>
-            <div className="animated-background">
-                <div className="background-masker btn-divide-left"></div>
-            </div>
-            <div className="grid mt-10 gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div className="css-dom"></div>
-                <div className="css-dom"></div>
-                <div className="css-dom"></div>
-                <div className="css-dom"></div>
-                <div className="css-dom hidden xl:flex lg:flex"></div>
-                <div className="css-dom hidden xl:flex lg:flex"></div>
-                <div className="css-dom hidden xl:flex"></div>
-                <div className="css-dom hidden xl:flex"></div>
+            <div>
+                <div className="animated-background">
+                    <div className="background-masker btn-divide-left"></div>
+                </div>
+                <div className="grid mt-10 gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom hidden xl:flex lg:flex"></div>
+                    <div className="css-dom hidden xl:flex lg:flex"></div>
+                    <div className="css-dom hidden xl:flex"></div>
+                    <div className="css-dom hidden xl:flex"></div>
+                </div>
             </div>
         </div>
-    </div>
     }
 
 
@@ -51,7 +51,7 @@ const TopProducts = () => {
                                 <p className=" font-bold">Origin: {product.origin}</p>
                                 <p className="text-lg text-amber-600 font-bold">Price: ${product.price}</p>
                                 <p className=" font-bold">Sold: {product.sold} item</p>
-                            <Link className="card-actions"><button className="btn btn-sm btn-warning">Details</button></Link>
+                                <Link className="card-actions"><button className="btn btn-sm btn-warning">Details</button></Link>
                             </div>
                         </div>
                     </div>)

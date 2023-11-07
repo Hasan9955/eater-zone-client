@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from 'react-router-dom'
+import '../Css Style/AddedFood.css'
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -47,6 +50,9 @@ const Shop = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Eater Zone | Shop</title>
+            </Helmet>
             <div className="hero h-56 md:h-72 lg:h-[400px]" style={{ backgroundImage: 'url(https://i.ibb.co/z6XYR1K/d1.png)' }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="text-center  text-white">
@@ -56,7 +62,7 @@ const Shop = () => {
                     <div className="text-black relative">
                         <input type="text" placeholder="Search by category name" className="input input-bordered input-warning w-64 md:w-80 mt-5" />
                         <button className="btn btn-md absolute right-0 bottom-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
                     </div>
                 </div>
@@ -73,7 +79,7 @@ const Shop = () => {
                             <p className="font-bold ">Sold: {product.sold} items</p>
                             <p className="font-bold text-lg text-amber-600">Price: ${product.price}</p>
                             <div className="card-actions justify-center">
-                                <button className="btn btn-primary">Buy Now</button>
+                                <Link to={`/details/${product._id}`}><button className="btn btn-warning">Show Details</button></Link>
                             </div>
                         </div>
                     </div>)

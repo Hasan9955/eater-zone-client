@@ -22,6 +22,7 @@ import {
 } from '@tanstack/react-query'
 import { HelmetProvider } from 'react-helmet-async';
 import Shop from './Pages/Shop';
+import Details from './Pages/Details';
 
 
 
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <Shop></Shop>
+      },
+      {
+        path: '/details/:id',
+        element: <PrivateRoute><Details></Details></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
       }
     ]
   },
