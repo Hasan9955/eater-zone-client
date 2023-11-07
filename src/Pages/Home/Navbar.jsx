@@ -2,6 +2,10 @@
 import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../../Provider/AuthProvider';
+import { toast } from 'react-toastify';
+
+
+
 const Navbar = () => {
 
 
@@ -16,8 +20,8 @@ const Navbar = () => {
 
 const handleLogOut = () =>{
     logOut()
-    .then(res =>{
-        console.log(res)
+    .then(() =>{
+        toast.error('Now you have logOut')
     })
     .catch(error => {
         console.error(error)
@@ -79,16 +83,17 @@ const handleLogOut = () =>{
             <div className="navbar-end">
                 {
                     user ? <>
-                    <div className="dropdown dropdown-hover">
+                    <div className="dropdown dropdown-hover dropdown-end">
                     <label tabIndex={0} className="mx-2 btn btn-sm md:btn-md btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img src={user?.photoURL} alt='userImg' />
 
                         </div>
                     </label>
-                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 w-32 shadow bg-base-100 rounded-box ">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
+                    <ul tabIndex={0} className="dropdown-content z-[1] menu  md:w-48 w-32 shadow bg-base-100 rounded-box py-2 ">
+                        <li><NavLink to='/addFood'>Add Food</NavLink></li>
+                        <li><NavLink to='/addedFood'>My Added Foods</NavLink></li>
+                        <li><NavLink to='/order'>My Order</NavLink></li>
                     </ul>
                 </div>
                 <button onClick={handleLogOut} className='btn btn-sm btn-warning md:ml-2'>Log Out</button>

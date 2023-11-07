@@ -3,6 +3,7 @@ import { useState, useContext } from 'react'
 import { AuthContext } from '../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 
@@ -33,12 +34,13 @@ const Register = () => {
 
         createUser(email, password)
         .then(result => {
-            console.log(result)
             updateProfile(result.user, {
                 displayName: name,
                 photoURL: photo
             })
             .then(() => {
+                axios.post('http://localhost:5000/users', result.user)
+                .then((res) => console.log(res.data))
                 navigate("/")
                 Swal.fire({
                     title: 'Registration Successful',

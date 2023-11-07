@@ -13,6 +13,16 @@ import Register from './Pages/Register';
 import Home from './Pages/Home/Home';
 import AuthProvider from './Provider/AuthProvider';
 import PrivateRoute from './Router/PrivateRoute';
+import AddFood from './Pages/AddFood';
+import UpdateFood from './Pages/UpdateFood';
+import AddedFood from './Pages/AddedFood';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+
+
 
 
 const router = createBrowserRouter([
@@ -36,15 +46,35 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         element: <PrivateRoute><Blog></Blog></PrivateRoute>
+      },
+      {
+        path: '/addFood',
+        element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
+      },
+      {
+        path: '/updateFood/:id',
+        element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+      },
+      {
+        path: '/addedFood',
+        element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>
       }
     ]
   },
 ]);
 
+
+const queryClient = new QueryClient()
+
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )

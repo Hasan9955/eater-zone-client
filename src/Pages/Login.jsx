@@ -37,7 +37,12 @@ const Login = () => {
 
     const handleGoogleSign = () => {
         googleSign()
-            .then(res => console.log(res))
+            .then(res => {
+                if(res){
+                    toast.success('Login Successful !!!')
+                    navigate(location.state ? location.state : '/')
+                }
+            })
             .catch(error => console.error(error))
     }
 
