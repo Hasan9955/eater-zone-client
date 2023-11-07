@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
@@ -30,8 +31,19 @@ const UpdateFood = () => {
         const newProduct = { name, email, foodName, category, origin, price, quantity, description, photo, sold }
         console.log(newProduct)
 
-        axios.put(`http://localhost:5000/update/${_id}`)
-        .then(result => console.log(result.data))
+        axios.put(`http://localhost:5000/update/${_id}`, newProduct)
+        .then(result => {
+            if (result.data.acknowledged){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your product updated successfully!!!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  window.history.back()
+            }
+        })
 
     }
 
