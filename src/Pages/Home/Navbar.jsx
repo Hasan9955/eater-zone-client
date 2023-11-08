@@ -40,7 +40,7 @@ const handleLogOut = () =>{
                     </ul>
                 </div>
                 <Link to='/'>
-                    <div className='w-28 md:w-44'>
+                    <div className='w-28 md:w-44'  data-aos="fade-right">
                         <svg
                             viewBox="0 0 370 63.95110310551274"
                             className="css-1j8o68f"
@@ -97,7 +97,7 @@ const handleLogOut = () =>{
                     </ul>
                 </div>
                 <button onClick={handleLogOut} className='btn btn-xs md:btn-sm btn-warning md:ml-2'>Log Out</button>
-                    </div> : <Link to='/login'><button className='btn btn-warning md:ml-2'>Login</button></Link>
+                    </div> : <Link to='/login'><button  className='btn btn-warning md:ml-2'>Login</button></Link>
                 }
 
                 </div>

@@ -63,7 +63,7 @@ const TopProducts = () => {
                     </div>)
                 }
             </div>
-            <Link to='/shop' className='flex justify-center mt-10'><button className="btn btn-warning ">See All</button></Link>
+            <Link to='/shop' data-aos="zoom-out" className='flex justify-center mt-10'><button className="btn btn-warning ">See All</button></Link>
         </div>
     );
 };

@@ -19,10 +19,10 @@ const About = () => {
         <div className=' mt-10 text-center flex flex-col justify-center items-center'>
             
             <div className='flex flex-col md:flex-row justify-center items-center bg-base-200 rounded-xl lg:p-10 '>
-                <div>
+                <div data-aos="fade-up">
                     <img className='rounded-xl ' src="https://i.ibb.co/n7425hp/bb1.png" alt="" />
                 </div>
-                <div className='text-center lg:mx-10 md:ml-2 mt-10 md:mt-0'>
+                <div data-aos="fade-down" className='text-center lg:mx-10 md:ml-2 mt-10 md:mt-0'>
                 <h3 className=" text-3xl lg:text-5xl font-bold lg:mb-10 mb-4  text-amber-600">About Us</h3>
                     <h1 className='text-xl md:text-2xl lg:text-4xl font-bold lg:mb-5'>Savor the Flavor.</h1>
                     <p className='max-w-md'>At Eater Zone, we are more than just a place to eat. we are a culinary journey. Our story began with a shared passion for creating exceptional dining experiences. With a team of dedicated chefs and food enthusiasts, we have embarked on a mission to delight your taste buds and create memorable moments. </p>
@@ -30,7 +30,7 @@ const About = () => {
             </div>
             <div>
                 <div className='grid md:grid-cols-2 gap-5 mt-10'>
-                    <div className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div data-aos="fade-right" className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><FaLocationDot></FaLocationDot></div>
                         <div>
                             <p className="text-2xl">Postal Address</p>
@@ -39,7 +39,7 @@ const About = () => {
                         </div>
 
                     </div >
-                    <div className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div data-aos="fade-left" className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><AiOutlinePhone></AiOutlinePhone></div>
                         <div>
                             <p className="text-2xl">Phone & Email</p>
@@ -50,7 +50,7 @@ const About = () => {
 
                     </div>
 
-                    <div className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div data-aos="fade-right" className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><BsFillClockFill></BsFillClockFill></div>
                         <div>
                             <p className="text-2x">Open Hours</p>
@@ -60,7 +60,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className=' flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div data-aos="fade-left" className=' flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><TfiWrite></TfiWrite></div>
                         <div>
                             <p className="text-2xl">Sessions</p>
