@@ -15,7 +15,7 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/blog'>Blog</NavLink></li>
         <li><NavLink to='/shop'>Shop</NavLink></li>
-        <li><NavLink to='/cart'>Cart</NavLink></li>
+        <li><a href="#about">About</a></li>
     </>
 
 const handleLogOut = () =>{
@@ -86,7 +86,7 @@ const handleLogOut = () =>{
                     <div className="dropdown dropdown-hover dropdown-end">
                     <label tabIndex={0} className="md:mx-2 btn btn-sm md:btn-md btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src={user?.photoURL} alt='userImg' />
+                            <img src={user.photoURL} alt='userImg' />
 
                         </div>
                     </label>

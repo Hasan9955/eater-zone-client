@@ -9,7 +9,7 @@ const TopProducts = () => {
     const { isError, isPending, data: products } = useQuery({
         queryKey: ['topSell'],
         queryFn: async () => {
-            const result = await axios.get('http://localhost:5000/topProducts')
+            const result = await axios.get('https://eater-zone-server.vercel.app/topProducts')
             return result.data
         }
     })
@@ -44,10 +44,10 @@ const TopProducts = () => {
 
 
     return (
-        <>
+        <div className="max-w-6xl mx-auto">
             <p className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mt-10 mb-2 text-black">Best Sellers Products</p>
-            <p className="text-center text-sm p-1 md:text-lg font-bold max-w-lg mx-auto">Discover our top picks in the Best Sellers Showcase, where we feature the very best of our products.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 px-10">
+            <p className="text-center text-sm p-1 md:text-lg font-bold max-w-xl mx-auto">Discover our top picks in the Best Sellers Showcase, where we feature the very best of our products.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 md:px-10">
                 {
                     products?.map(product => <div key={product._id}>
                         <div className="card card-compact bg-base-100 shadow-xl">
@@ -64,7 +64,7 @@ const TopProducts = () => {
                 }
             </div>
             <Link to='/shop' className='flex justify-center mt-10'><button className="btn btn-warning ">See All</button></Link>
-        </>
+        </div>
     );
 };
 

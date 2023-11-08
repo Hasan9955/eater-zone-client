@@ -51,10 +51,10 @@ const Details = () => {
 
         const update = {NewQuantity, TotalSold}
         const postData = {origin, photo, price, id: _id, foodName, category, value, email: user.email}
-        axios.put(`http://localhost:5000/cartUpdate/${_id}`, update)
+        axios.put(`https://eater-zone-server.vercel.app/cartUpdate/${_id}`, update)
         .then(res => {
             if(res.data.acknowledged){
-                axios.post('http://localhost:5000/cartPost', postData)
+                axios.post('https://eater-zone-server.vercel.app/cartPost', postData)
                 .then(res => {
                     if(res.data.acknowledged){
                         Swal.fire({

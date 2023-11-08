@@ -22,7 +22,7 @@ const HomeSlider = () => {
 
     const [sliders, setSliders] = useState()
 
-    axios.get('http://localhost:5000/sliders')
+    axios.get('https://eater-zone-server.vercel.app/sliders')
         .then(res => setSliders(res.data))
 
 

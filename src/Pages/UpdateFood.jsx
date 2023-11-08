@@ -30,7 +30,7 @@ const UpdateFood = () => {
         const newProduct = { name, email, foodName, category, origin, price, quantity, description, photo, sold }
         console.log(newProduct)
 
-        axios.put(`http://localhost:5000/update/${_id}`, newProduct)
+        axios.put(`https://eater-zone-server.vercel.app/update/${_id}`, newProduct)
         .then(result => {
             if (result.data.acknowledged){
                 Swal.fire({

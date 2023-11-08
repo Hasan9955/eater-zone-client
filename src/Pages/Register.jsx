@@ -39,7 +39,7 @@ const Register = () => {
                 photoURL: photo
             })
             .then(() => {
-                axios.post('http://localhost:5000/users', result.user)
+                axios.post('https://eater-zone-server.vercel.app/users', result.user)
                 .then((res) => console.log(res.data))
                 navigate("/")
                 Swal.fire({

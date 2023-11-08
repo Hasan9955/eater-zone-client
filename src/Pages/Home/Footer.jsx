@@ -41,7 +41,7 @@ const Footer = () => {
 
                 </div>
                 <p className="font-bold">
-                    ACME Industries Ltd. <br />Providing reliable tech since 1992
+                    Eater Zone Ltd. <br />Providing reliable Food since 2008
                 </p>
 
             </aside>

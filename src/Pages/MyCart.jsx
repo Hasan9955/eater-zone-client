@@ -18,7 +18,7 @@ const MyCart = () => {
     const { isPending, isError, data } = useQuery({
         queryKey: ['cartFood'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/cart?email=${user.email}`, {withCredentials: true})
+            const res = await axios.get(`https://eater-zone-server.vercel.app/cart?email=${user.email}`, {withCredentials: true})
             return res.data
         }
     })
@@ -69,7 +69,7 @@ const MyCart = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/cartDelete/${id}`)
+                axios.delete(`https://eater-zone-server.vercel.app/cartDelete/${id}`)
                 .then(res => {
                     if(res.data.acknowledged){
                         Swal.fire({

@@ -14,14 +14,14 @@ const AddedFood = () => {
     const [products, setProducts] = useState([])
 
 
-    /* fetch(`http://localhost:5000/products?email=${user?.email}`)
+    /* fetch(`https://eater-zone-server.vercel.app/products?email=${user?.email}`)
         .then(res => res.json())
         .then(data => setProducts(data)) */
 
     const { isPending, isError, data } = useQuery({
         queryKey: ['added products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {credentials: "include"})
+            const res = await fetch(`https://eater-zone-server.vercel.app/products?email=${user?.email}`, {credentials: "include"})
             return res.json()
         }
     })
@@ -72,7 +72,7 @@ const AddedFood = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/delete/${id}`)
+                axios.delete(`https://eater-zone-server.vercel.app/delete/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
 

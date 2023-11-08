@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <PrivateRoute><Blog></Blog></PrivateRoute>
+        element: <Blog></Blog>
       },
       {
         path: '/addFood',
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       {
         path: '/updateFood/:id',
         element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({ params }) => fetch(`https://eater-zone-server.vercel.app/products/${params.id}`)
       },
       {
         path: '/addedFood',
@@ -67,13 +67,13 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <Shop></Shop>,
-        loader: () => fetch('http://localhost:5000/productsCount')
+        loader: () => fetch('https://eater-zone-server.vercel.app/productsCount')
 
       },
       {
         path: '/details/:id',
         element: <PrivateRoute><Details></Details></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({params}) => fetch(`https://eater-zone-server.vercel.app/products/${params.id}`)
       },
       {
         path: '/cart',

@@ -22,7 +22,7 @@ const Shop = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/pageProducts?page=${currentPage}&size=${itemsPerPage}`)
+        fetch(`https://eater-zone-server.vercel.app/pageProducts?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [currentPage, itemsPerPage]);
@@ -31,7 +31,7 @@ const Shop = () => {
     const { isPending, isError, data } = useQuery({
         queryKey: ['shop'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/allProducts')
+            const res = await axios.get('https://eater-zone-server.vercel.app/allProducts')
             return res.data
 
         }
@@ -78,7 +78,7 @@ const Shop = () => {
     const handleSearch = () => {
         const searchValue = input.current.value
 
-        axios.get(`http://localhost:5000/searchProduct/${searchValue}`)
+        axios.get(`https://eater-zone-server.vercel.app/searchProduct/${searchValue}`)
             .then(res => {
                 if (res.data.length < 1) {
                     return Swal.fire({

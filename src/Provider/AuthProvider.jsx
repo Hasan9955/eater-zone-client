@@ -54,12 +54,12 @@ const AuthProvider = ({ children }) => {
 
             // give a token when a user successfully login
             if(currentUser){
-                axios.post('http://localhost:5000/jwt', currentEmail, {withCredentials: true})
+                axios.post('https://eater-zone-server.vercel.app/jwt', currentEmail, {withCredentials: true})
                 .then(res => {
                     console.log(res.data)
                 })
             }else{
-                axios.post('http://localhost:5000/logout', currentEmail, {withCredentials: true})
+                axios.post('https://eater-zone-server.vercel.app/logout', currentEmail, {withCredentials: true})
                 .then(res => {
                     console.log(res.data)
                 })
