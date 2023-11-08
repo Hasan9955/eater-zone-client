@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
@@ -18,12 +18,14 @@ const Details = () => {
 
     const [newSold, setNewSold] = useState(sold || 0)
     const [newQua, setNewQua] = useState(quantity || 0)
+    const [toast, setToast] = useState(null)
 
 
     const handleCart = e => {
         e.preventDefault()
         const input = e.target
         const value = parseInt(input.number.value)
+        setToast('')
 
         
         if(user.email === email) {
@@ -33,10 +35,19 @@ const Details = () => {
                 text: "You can't purchase your won products!",
               });
         }
+        console.log(value)
+        console.log(newQua)
+        if(value === 0 ){
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Sorry, but this item is not available right now.",
+              });
+        }
 
-
-        const NewQuantity = quantity - value 
-        const TotalSold = sold + value
+        
+        const NewQuantity = newQua - value;
+        const TotalSold = newSold + value;
 
         const update = {NewQuantity, TotalSold}
         const postData = {origin, photo, price, id: _id, foodName, category, value, email: user.email}
@@ -53,8 +64,13 @@ const Details = () => {
                             showConfirmButton: false,
                             timer: 1500
                           });
+                          input.reset()
                           setNewQua(NewQuantity)
                           setNewSold(TotalSold)
+                          setToast(<div className='flex flex-col md:flex-row justify-between px-5 py-3 border-2 md:m-5 items-center '>
+                            <p>{value} {foodName} items added to your cart successfully!</p>
+                            <Link to='/cart'><button className='border rounded-full px-3 py-2 hover:bg-black hover:text-white hover:border-black border-amber-600'>view cart</button></Link>
+                          </div>)
                     }
                 })
             }
@@ -68,7 +84,10 @@ const Details = () => {
             <Helmet>
                 <title>Eater Zone | Details</title>
             </Helmet>
-            <div className="card lg:card-side bg-base-100 shadow-xl my-20 md:mx-10">
+            {
+                toast && toast
+            }
+            <div className="flex flex-col md:flex-row bg-base-100 shadow-xl my-20 md:mx-10">
                 <figure><img className="w-[500px] lg:w-[600px] h-[300px] md:h-[450px] rounded-xl" src={photo} alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{foodName}</h2>
@@ -76,11 +95,11 @@ const Details = () => {
                     <h4 className="font-bold ">Origin: {origin}</h4>
                     <h4 className="font-bold ">Sold: {newSold} items</h4>
                     <h4 className="font-bold ">Available: {newQua} items</h4>
-                    <h4 className="font-bold text-lg text-amber-600">Price: ${price}</h4>
+                    <h4 className="font-bold text-xl text-pink-600">Price: ${price}</h4>
                     <h4 className="max-w-md ">{description}</h4>
                     <form onSubmit={handleCart} className="card-actions items-center my-2">
-                        <input className="w-14 border-2 rounded h-10 shadow-xl text-center" defaultValue={1} min={1} max={quantity} type="number" name="number" required />
-                        <button className="rounded-full border border-amber-600 hover:text-white hover:bg-black hover:border-black p-2">Add to cart</button>
+                        <input className="w-14 border-2 rounded h-12 shadow-xl text-center" defaultValue={newQua > 1 ? 1 : 0} min={newQua > 1 ? 1 : 0} max={newQua} type="number" name="number" required />
+                        <button className="border rounded-full px-3 py-2 hover:bg-black hover:text-white hover:border-black border-amber-600">Add to cart</button>
                     </form>
                 </div>
             </div>

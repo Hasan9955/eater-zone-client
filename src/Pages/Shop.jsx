@@ -79,7 +79,7 @@ const Shop = () => {
                             <p className="font-bold ">Sold: {product.sold} items</p>
                             <p className="font-bold text-lg text-amber-600">Price: ${product.price}</p>
                             <div className="card-actions justify-center">
-                                <Link to={`/details/${product._id}`}><button className="btn btn-warning">Show Details</button></Link>
+                                <Link to={`/details/${product._id}`}><button className="border rounded-full px-3 py-2 hover:bg-black hover:text-white hover:border-black border-amber-600">Show Details</button></Link>
                             </div>
                         </div>
                     </div>)
