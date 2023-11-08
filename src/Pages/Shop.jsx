@@ -12,14 +12,13 @@ const Shop = () => {
     const input = useRef()
     const [products, setProducts] = useState([])
 
-    const [itemsPerPage, setItemsPerPage] = useState(10)
+    const [itemsPerPage, setItemsPerPage] = useState(9)
     const [currentPage, setCurrentPage] = useState(0)
 
 
     const { count } = useLoaderData()
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPages).keys()]
-    console.log(pages)
 
 
     useEffect(() => {
@@ -98,7 +97,6 @@ const Shop = () => {
     const handleItemPerPage = e => {
         const value = parseInt(e.target.value)
 
-        console.log(value)
         setItemsPerPage(value)
         setCurrentPage(0)
     }
@@ -138,17 +136,17 @@ const Shop = () => {
                 </div>
 
             </div>
-            <div>
-                <p>Show</p>
-            <select className="w-36 border" defaultValue={10} onChange={handleItemPerPage} name="" id="">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="25">25</option>
+            <div className="flex justify-center md:justify-end mt-10">
+                <p className="join-item btn ">Show: </p>
+            <select className="w-56 border-2 shadow-xl rounded-r-lg" defaultValue={9} onChange={handleItemPerPage} name="" id="">
+                    <option value="9">9</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
                     <option value="50">50</option>
                     <option value={count}>All</option>
                 </select>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10 p-3 lg:px-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 mb-10 p-3 lg:px-10">
                 {
                     products?.map(product => <div key={product._id} className="card card-compact bg-base-100 shadow-xl">
                         <figure><img className="rounded-lg" src={product.photo} alt="Shoes" /></figure>
@@ -165,15 +163,16 @@ const Shop = () => {
                     </div>)
                 }
             </div>
-            <div className='pagination'>
-                <p>current page: {currentPage}</p>
-                <button onClick={handlePrev}>Prev</button>
+            <div className='flex flex-col justify-center items-center'>
+                <p className="mb-2 font-bold ">Current page: {currentPage + 1}</p>
+                <div>
+                <button className={currentPage > 0 ? "btn btn-primary " : "btn-disabled btn cursor-not-allowed"} onClick={handlePrev}>Prev</button>
                 {
                     pages.map(page => <button key={page} className={`btn ml-2 btn-outline ${currentPage === page ? 'bg-black text-white' : ''}`} onClick={() => setCurrentPage(page)}>{page + 1}</button>)
                 }
 
-                <button onClick={handleNext}>Next</button>
-                
+                <button className={ currentPage < pages.length - 1 ? "btn btn-primary ml-2" : "btn-disabled btn cursor-not-allowed ml-2"} onClick={handleNext}>Next</button>
+                </div>
             </div>
         </div>
     );
