@@ -39,8 +39,8 @@ const TopProducts = () => {
 
     return (
         <>
-            <p className="text-center text-5xl font-bold mt-10 mb-2 text-black">Flash Sale</p>
-            <p className="text-center font-bold max-w-md mx-auto">Discover our top picks in the Best Sellers Showcase, where we feature the very best of our products.</p>
+            <p className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mt-10 mb-2 text-black">Best Sellers Products</p>
+            <p className="text-center text-sm p-1 md:text-lg font-bold max-w-lg mx-auto">Discover our top picks in the Best Sellers Showcase, where we feature the very best of our products.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 px-10">
                 {
                     products?.map(product => <div key={product._id}>

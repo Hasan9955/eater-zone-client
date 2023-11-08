@@ -21,7 +21,7 @@ const AddedFood = () => {
     const { isPending, isError, data } = useQuery({
         queryKey: ['added products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {credentials: "include"})
             return res.json()
         }
     })

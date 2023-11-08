@@ -17,7 +17,7 @@ const MyCart = () => {
     const { isPending, isError, data } = useQuery({
         queryKey: ['cartFood'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/cart?email=${user.email}`)
+            const res = await axios.get(`http://localhost:5000/cart?email=${user.email}`, {withCredentials: true})
             return res.data
         }
     })

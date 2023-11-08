@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword,  onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
+import axios from "axios";
 
 
 
@@ -45,11 +46,27 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
-            console.log(currentUser)
+
+            const userEmail = currentUser?.email || user?.email 
+            const currentEmail = {email: userEmail}
             setUser(currentUser)
+
+            // give a token when a user successfully login
+            if(currentUser){
+                axios.post('http://localhost:5000/jwt', currentEmail, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data)
+                })
+            }else{
+                axios.post('http://localhost:5000/logout', currentEmail, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data)
+                })
+            }
+            
             setLoader(false)
         })
-    }, [])
+    }, [user?.email])
 
 
     const authInfo = {
