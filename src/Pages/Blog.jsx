@@ -1,15 +1,12 @@
-/* eslint-disable react/no-deprecated */
-import { useState } from "react";
-import ImageUploading from "react-images-uploading";
+
+import { Helmet } from "react-helmet-async";
+
 
 
 
 
 const Blog = () => {
-    const [images, setImages] = useState(null);
-    const onChange = (imageList) => {
-        setImages(imageList);
-    };
+    
 
     // data for submit
     // console.log(images[0]?.data_url);
@@ -17,53 +14,30 @@ const Blog = () => {
 
 
     return (
-        <div className=" ">
-            <ImageUploading
-                multiple
-                value={images}
-                onChange={onChange}
-                maxNumber={1}
-                dataURLKey="data_url"
-                acceptType={["jpg", "png"]}
-            >
-                {({
-                    imageList,
-                    onImageUpload,
-                    onImageUpdate,
-                    isDragging,
-                    dragProps,
-                }) => (
-                    // write your building UI
-                    <div className=" ">
-                        <div className="artboard artboard-horizontal w-40 h-40 bg-base-200 rounded-xl flex justify-center items-center">
-                        {
-                            images ? <div>
-                            {imageList.map((image, index) => (
-                                <div key={index} className="image-item relative">
-                                    <img className="w-40 h-40 rounded-xl" src={image.data_url} alt=""/>
-                                    <div className="image-item__btn-wrapper">
-                                        <button className="absolute bottom-0 border bg-black text-white rounded-lg p-1 right-0" onClick={() => onImageUpdate(index)}>Update</button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div> 
-                        : <button className=" "
-                                style={isDragging ? { color: "red" } : null}
-                                onClick={onImageUpload}
-                                {...dragProps}
-                            >
-                                Click or Drop here
-                            </button>
-                        }
-                        </div>
-                        
+        <div className="max-w-5xl mx-auto">
+            
 
 
-
-
-                    </div>
-                )}
-            </ImageUploading>
+            <Helmet>
+                <title>Eater Zone | Blog</title>
+            </Helmet>
+            <h1 className="text-center text-5xl">Blog</h1>
+            <div className="mt-10 border md:p-10  shadow-xl rounded-xl ">
+                <img src="https://i.ibb.co/1GrTqd5/one-way-data.png" alt="" />
+                
+                <h1 className="text-2xl font-bold lg:text-3xl">1. What is One way data binding?</h1>
+                
+            </div>
+            <div className="mt-10 border md:p-10  shadow-xl rounded-xl ">
+                <img src="https://i.ibb.co/C2C9FGJ/npm-node.png" alt="" />
+                <h1>2. What is NPM in node.js?</h1>
+                
+            </div>
+            <div className="mt-10 border md:p-10  shadow-xl rounded-xl ">
+                <img src="https://i.ibb.co/QnxR7C4/mongo-and-sql-1.png" alt="" />
+                <h1>3. Different between Mongodb database vs mySQL database.</h1>
+                
+            </div>
             </div>
     );
 

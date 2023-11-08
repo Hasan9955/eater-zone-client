@@ -96,7 +96,7 @@ const handleLogOut = () =>{
                         <li><NavLink to='/cart'>My Cart</NavLink></li>
                     </ul>
                 </div>
-                <button onClick={handleLogOut} className='btn btn-sm btn-warning md:ml-2'>Log Out</button>
+                <button onClick={handleLogOut} className='btn btn-xs md:btn-sm btn-warning md:ml-2'>Log Out</button>
                     </div> : <Link to='/login'><button className='btn btn-warning md:ml-2'>Login</button></Link>
                 }
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const TopProducts = () => {
 
 
-    const { isPending, data: products } = useQuery({
+    const { isError, isPending, data: products } = useQuery({
         queryKey: ['topSell'],
         queryFn: async () => {
             const result = await axios.get('http://localhost:5000/topProducts')
@@ -35,6 +35,12 @@ const TopProducts = () => {
         </div>
     }
 
+    if (isError) {
+        return <div className="flex flex-col justify-center items-center">
+            <img src="https://i.ibb.co/0KNH9GZ/1edb4ff9.jpg" alt="" />
+            <button onClick={() => location.reload()} className="btn btn-warning">Reload</button>
+        </div>
+    }
 
 
     return (

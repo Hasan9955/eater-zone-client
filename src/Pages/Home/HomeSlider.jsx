@@ -47,11 +47,21 @@ const HomeSlider = () => {
                 className="mySwiper"
             >
                 {
-                    sliders?.slice(0, 4).map(slider => <SwiperSlide key={slider._id}>
-                        <div>
-                            <img src={slider.img} alt="" />
-                        </div>
-                    </SwiperSlide>)
+                   
+                   sliders && <div>
+                    <SwiperSlide>
+                        <div><img src={sliders[0].img} alt="" /></div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div><img src={sliders[1].img} alt="" /></div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div><img src={sliders[2].img} alt="" /></div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div><img src={sliders[3].img} alt="" /></div>
+                    </SwiperSlide>
+                   </div>
                 }
             </Swiper>
 

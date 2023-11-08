@@ -6,6 +6,7 @@ import '../Css Style/AddedFood.css'
 import { AiFillDelete } from 'react-icons/ai'
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const MyCart = () => {
@@ -90,6 +91,9 @@ const MyCart = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Eater Zone | Cart</title>
+            </Helmet>
             {
                 cartFood.length > 0 ? <div>
                      {
