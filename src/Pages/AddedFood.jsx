@@ -95,7 +95,7 @@ const AddedFood = () => {
         <div>
             {
                 products?.length > 0 ? <>
-                <p className="text-center text-2xl md:text-3xl  font-bold text-amber-500 border rounded-lg border-amber-800 bg-base-100 max-w-xl hidden md:flex mx-auto p-3">You have {products.length} products in your collection.</p>
+                <p className="text-center text-2xl md:text-3xl  font-bold text-amber-500 border rounded-lg border-amber-800 bg-base-100 max-w-2xl hidden md:flex mx-auto p-3">You have {products.length} products in your collection.</p>
                 <div className="my-10">
                     {
                         products.map(product => <div className="card card-compact bg-base-100 shadow-xl border md:m-10 px-5 md:px-10 py-5" key={product._id}>

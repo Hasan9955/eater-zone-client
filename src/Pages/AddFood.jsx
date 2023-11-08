@@ -88,6 +88,7 @@ const AddFood = () => {
                                 <option>Fruits</option>
                                 <option>Vegetables</option>
                                 <option>Seafood</option>
+                                <option>Soups</option>
                                 <option>Fast Food</option>
                                 <option>Proteins</option>
                                 <option>Dairy</option>
@@ -105,6 +106,7 @@ const AddFood = () => {
                                 <option>China</option>
                                 <option>Thailand</option>
                                 <option>Russia</option>
+                                <option>America</option>
                                 <option>Japan</option>
                             </select>
                         </div>

@@ -1,15 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import '../Css Style/AddedFood.css'
 import { Helmet } from "react-helmet-async";
+import { useState, useEffect, useRef } from 'react'
+import Swal from "sweetalert2";
 
 
 
 const Shop = () => {
+    const input = useRef()
+    const [products, setProducts] = useState([])
+
+    const [itemsPerPage, setItemsPerPage] = useState(10)
+    const [currentPage, setCurrentPage] = useState(0)
 
 
-    const { isPending, isError, data: products } = useQuery({
+    const { count } = useLoaderData()
+    const numberOfPages = Math.ceil(count / itemsPerPage);
+    const pages = [...Array(numberOfPages).keys()]
+    console.log(pages)
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/pageProducts?page=${currentPage}&size=${itemsPerPage}`)
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [currentPage, itemsPerPage]);
+
+
+    const { isPending, isError, data } = useQuery({
         queryKey: ['shop'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:5000/allProducts')
@@ -17,6 +37,13 @@ const Shop = () => {
 
         }
     })
+
+
+    useEffect(() => {
+        if (data) {
+            setProducts(data)
+        }
+    }, [data])
 
 
 
@@ -48,6 +75,49 @@ const Shop = () => {
     }
 
 
+
+    const handleSearch = () => {
+        const searchValue = input.current.value
+
+        axios.get(`http://localhost:5000/searchProduct/${searchValue}`)
+            .then(res => {
+                if (res.data.length < 1) {
+                    return Swal.fire({
+                        icon: "error",
+                        title: "Oops... No match found. ",
+                        text: "Please search by category or origin name."
+                    });
+                }
+
+                setProducts(res.data)
+            })
+
+    }
+
+
+    const handleItemPerPage = e => {
+        const value = parseInt(e.target.value)
+
+        console.log(value)
+        setItemsPerPage(value)
+        setCurrentPage(0)
+    }
+
+    const handlePrev = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+
+    const handleNext = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+
+
     return (
         <div>
             <Helmet>
@@ -60,13 +130,23 @@ const Shop = () => {
                     <div className="my-3 w-44 bg-amber-600 h-1 mx-auto"></div>
                     <p className="font-bold text-xl">Pure natural food</p>
                     <div className="text-black relative">
-                        <input type="text" placeholder="Search by category name" className="input input-bordered input-warning w-64 md:w-80 mt-5" />
-                        <button className="btn btn-md absolute right-0 bottom-0">
+                        <input type="text" ref={input} placeholder="Search by category name" className="input input-bordered input-warning w-64 md:w-80 mt-5" />
+                        <button onClick={handleSearch} className="btn btn-md absolute right-0 bottom-0">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
                     </div>
                 </div>
 
+            </div>
+            <div>
+                <p>Show</p>
+            <select className="w-36 border" defaultValue={10} onChange={handleItemPerPage} name="" id="">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value={count}>All</option>
+                </select>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10 p-3 lg:px-10">
                 {
@@ -84,6 +164,16 @@ const Shop = () => {
                         </div>
                     </div>)
                 }
+            </div>
+            <div className='pagination'>
+                <p>current page: {currentPage}</p>
+                <button onClick={handlePrev}>Prev</button>
+                {
+                    pages.map(page => <button key={page} className={`btn ml-2 btn-outline ${currentPage === page ? 'bg-black text-white' : ''}`} onClick={() => setCurrentPage(page)}>{page + 1}</button>)
+                }
+
+                <button onClick={handleNext}>Next</button>
+                
             </div>
         </div>
     );

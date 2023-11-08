@@ -69,12 +69,19 @@ const MyCart = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`http://localhost:5000/cartDelete/${id}`)
-                .then(res => console.log(res.data))
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                .then(res => {
+                    if(res.data.acknowledged){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your product has been deleted.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          const remaining = cartFood.filter(food => food._id !== id)
+                          setCartFood(remaining)
+                    }})
+              
             }
           });
     }
@@ -84,27 +91,41 @@ const MyCart = () => {
     return (
         <div>
             {
-                cartFood.map(food => <div key={food._id} className="flex flex-col md:flex-row justify-between md:items-center rounded-xl max-w-4xl border shadow-xl mt-10 p-5 mx-auto">
-                    <div className="flex md:items-center flex-col md:flex-row md:space-x-3 max-w-[450px]">
-                        <div className=" ">
-                            <Link to={`/details/${food.id}`}><img className="rounded-lg w-full md:w-56 mb-5 md:mb-0" src={food.photo} alt="" /></Link>
+                cartFood.length > 0 ? <div>
+                     {
+                    cartFood.map(food => <div key={food._id} className="flex flex-col md:flex-row justify-between md:items-center rounded-xl max-w-4xl border shadow-xl mt-10 p-5 mx-auto">
+                        <div className="flex md:items-center flex-col md:flex-row md:space-x-3 max-w-[450px]">
+                            <div className=" ">
+                                <Link to={`/details/${food.id}`}><img className="rounded-lg w-full md:w-56 mb-5 md:mb-0" src={food.photo} alt="" /></Link>
+                            </div>
+                            <div className=" ">
+                                <Link to={`/details/${food.id}`}><div className="text-xl font-bold max-w-[250px]">{food.foodName}</div></Link>
+                                <div>Origin: {food.origin}</div>
+                                <p>Category: {food.category}</p>
+                                <p className="text-lg font-bold text-pink-800">Price: $ {food.price}</p>
+    
+                            </div>
                         </div>
-                        <div className=" ">
-                            <Link to={`/details/${food.id}`}><div className="text-xl font-bold max-w-[250px]">{food.foodName}</div></Link>
-                            <div>Origin: {food.origin}</div>
-                            <p>Category: {food.category}</p>
-                            <p className="text-lg font-bold text-pink-800">Price: $ {food.price}</p>
-
+                        <div className="flex flex-col">
+                            Quantity: {food.quantity}
+                            <br />
+                            Subtotal: ${food.price * food.quantity}
+                            <button onClick={() => handleDelete(food._id)} className="border-2 rounded-full px-1 py-1 mt-8 w-24 flex justify-center items-center border-pink-800 hover:bg-black hover:text-white hover:border-black click"><AiFillDelete className="text-xl mr-1"></AiFillDelete><p>Delete</p></button>
                         </div>
-                    </div>
-                    <div className="flex flex-col">
-                        Quantity: {food.quantity}
-                        <br />
-                        Subtotal: ${food.price * food.quantity}
-                        <button onClick={() => handleDelete(food._id)} className="border-2 rounded-full px-1 py-1 mt-8 w-24 flex justify-center items-center border-pink-800 hover:bg-black hover:text-white hover:border-black click"><AiFillDelete className="text-xl mr-1"></AiFillDelete><p>Delete</p></button>
-                    </div>
-
-                </div>)
+    
+                    </div>)
+                }
+                </div> :
+                <div className="flex flex-col text-center justify-center  items-center mb-20 p-2">
+                    <img className=" md:w-1/2" src="https://i.ibb.co/j6MBkVs/image.webp" alt="" />
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl text-amber-800">Your cart is currently empty.</h2>
+                    <p className="max-w-xl text-sm font-bold"> Feel free to browse our products and add items to your cart whenever you are ready to make a purchase.
+                    </p>
+                    <span className="md:text-3xl text-2xl lg:text-4xl text-blue-400 mb-5">Happy shopping!</span>
+                    <Link to='/'>
+                        <button className="btn rounded-full btn-primary">Go Home</button>
+                    </Link>
+                </div>
             }
         </div>
     );
