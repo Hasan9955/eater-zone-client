@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react'
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
 
@@ -16,9 +15,9 @@ const Details = () => {
 
     const navigate = useNavigate()
 
-
     const handlePurchase = () =>{
 
+        
         if(quantity === 0 ){
             return Swal.fire({
                 icon: "error",
@@ -49,10 +48,7 @@ const Details = () => {
                     <h4 className="font-bold text-xl text-pink-600 my-2">Price: ${price}</h4>
                     <h4 className="max-w-md ">{description}</h4>
                     
-                    {/* <form onSubmit={handleOrder} className="card-actions items-center my-2">
-                        <input className="input input-border" defaultValue={newQua > 1 ? 1 : 0} min={newQua > 1 ? 1 : 0} max={newQua} type="number" name="number" required />
-                        
-                    </form> */}
+                    
                 </div>
                 <button onClick={handlePurchase} className="btn btn-outline border rounded-full  w-36 mt-5  hover:bg-black hover:text-white hover:border-black border-amber-600 ">order now</button>
                 </div>

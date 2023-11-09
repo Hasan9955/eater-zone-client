@@ -3,8 +3,8 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useContext, useEffect, useState } from 'react'
 import '../Css Style/AddedFood.css'
 import { Link } from 'react-router-dom'
-import axios from 'axios';
-import Swal from "sweetalert2";
+// import axios from 'axios';
+// import Swal from "sweetalert2";
 
 
 const AddedFood = () => {
@@ -60,7 +60,7 @@ const AddedFood = () => {
     }
 
 
-    const handleDelete = (id) => {
+   /*  const handleDelete = (id) => {
 
         Swal.fire({
             title: "Are you sure?",
@@ -89,7 +89,7 @@ const AddedFood = () => {
             }
         });
 
-    }
+    } */
 
     return (
         <div>
@@ -103,17 +103,19 @@ const AddedFood = () => {
                                 <figure><img className="rounded-lg w-96 h-56 lg:h-72" src={product.photo} alt="Food" /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{product.foodName}</h2>
-                                    <h2 className="text-lg font-bold ">Origin: {product.origin}</h2>
-                                    <h2 className="text-xl font-bold text-amber-600 ">Piece: ${product.price}</h2>
-                                    <h2 className="text-lg font-bold ">Quantity: {product.quantity}</h2>
-                                    <h2 className="text-lg font-bold ">Sold: {product.sold} items</h2>
+                                    <h2 className=" font-bold ">Origin: {product.origin}</h2>
+                                    
+                                    <h2 className=" font-bold ">Category: {product.category}</h2>
+                                    <h2 className=" font-bold ">Quantity: {product.quantity}</h2>
+                                    <h2 className=" font-bold ">Sold: {product.sold} items</h2>
+                                    <h2 className="text-lg font-bold text-amber-600 ">Piece: ${product.price}</h2>
                                     <p className="max-w-md">{product.description}</p>
                                 </div>
 
                             </div>
                             <div className="card-actions justify-end ">
                                 <Link to={`/updateFood/${product._id}`}><button className="btn btn-primary">Update</button></Link>
-                                <button className="btn btn-error" onClick={() => handleDelete(product._id)}>Delete</button>
+                                {/* <button className="btn btn-error" onClick={() => handleDelete(product._id)}>Delete</button> */}
                             </div>
                         </div>)
                     }

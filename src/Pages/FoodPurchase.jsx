@@ -9,15 +9,12 @@ import axios from 'axios';
 
 
 const FoodPurchase = () => {
-    const date = moment().format('MMMM Do YYYY');
-    console.log(date)
 
     
+    const date = moment().format('MMMM Do YYYY')
 
-
-
-
-    const { _id, foodName, category, email, origin, photo, price, quantity, sold } = useLoaderData()
+    const { _id, foodName, category, email, name, origin, photo, price, quantity, sold } = useLoaderData()
+    
 
     const { user } = useContext(AuthContext)
 
@@ -40,7 +37,7 @@ const FoodPurchase = () => {
             return Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "You can't purchase your won products!",
+                text: "You can't purchase your own products!",
               });
         }
 
@@ -58,8 +55,7 @@ const FoodPurchase = () => {
         const totalSold = newSold + value;
 
         const update = {NewQuantity: totalQuantity, TotalSold: totalSold}
-        console.log('new qua', totalQuantity, 'neq sold:', totalSold)
-        const postData = {origin, photo, price, id: _id, foodName, category, value, email: user.email}
+        const postData = {origin, photo, price, id: _id, foodName, category, value, owner: name, email: user.email, date}
         console.log(postData)
         axios.put(`https://eater-zone-server.vercel.app/cartUpdate/${_id}`, update)
         .then(res => {

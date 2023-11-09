@@ -50,16 +50,19 @@ const HomeSlider = () => {
                    
                    sliders && <div>
                     <SwiperSlide>
-                        <div><img src={sliders[0].img} alt="" /></div>
+                        <div><img className="h-[200px] md:h-[300px] lg:h-[400px] xl:h-[450px] w-full" src={sliders[0].img} alt="" /></div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div><img src={sliders[1].img} alt="" /></div>
+                        <div><img className="h-[200px] md:h-[300px] lg:h-[400px] xl:h-[450px] w-full" src={sliders[1].img} alt="" /></div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div><img src={sliders[2].img} alt="" /></div>
+                        <div><img className="h-[200px] md:h-[300px] lg:h-[400px] xl:h-[450px] w-full" src={sliders[2].img} alt="" /></div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div><img src={sliders[3].img} alt="" /></div>
+                        <div><img className="h-[200px] md:h-[300px] lg:h-[400px] xl:h-[450px] w-full" src={sliders[3].img} alt="" /></div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div><img className="h-[200px] md:h-[300px] lg:h-[400px] xl:h-[450px] w-full" src={sliders[4].img} alt="" /></div>
                     </SwiperSlide>
                    </div>
                 }

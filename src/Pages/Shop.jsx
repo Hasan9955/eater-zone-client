@@ -12,20 +12,20 @@ const Shop = () => {
     const input = useRef()
     const [products, setProducts] = useState([])
 
-    const [itemsPerPage, setItemsPerPage] = useState(9)
+    const [perPageProduct, setPerPageProduct] = useState(9)
     const [currentPage, setCurrentPage] = useState(0)
 
 
     const { count } = useLoaderData()
-    const numberOfPages = Math.ceil(count / itemsPerPage);
-    const pages = [...Array(numberOfPages).keys()]
+    const totalPage = Math.ceil(count / perPageProduct);
+    const pages = [...Array(totalPage).keys()]
 
 
     useEffect(() => {
-        fetch(`https://eater-zone-server.vercel.app/pageProducts?page=${currentPage}&size=${itemsPerPage}`)
+        fetch(`https://eater-zone-server.vercel.app/pageProducts?page=${currentPage}&size=${perPageProduct}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [currentPage, itemsPerPage]);
+    }, [currentPage, perPageProduct]);
 
 
     const { isPending, isError, data } = useQuery({
@@ -97,7 +97,7 @@ const Shop = () => {
     const handleItemPerPage = e => {
         const value = parseInt(e.target.value)
 
-        setItemsPerPage(value)
+        setPerPageProduct(value)
         setCurrentPage(0)
     }
 
@@ -128,7 +128,7 @@ const Shop = () => {
                     <div className="my-3 w-44 bg-amber-600 h-1 mx-auto"></div>
                     <p className="font-bold text-xl">Pure natural food</p>
                     <div className="text-black relative">
-                        <input type="text" ref={input} placeholder="Search by category or origin name" className="input input-bordered input-warning w-64 md:w-80 mt-5" />
+                        <input type="text" ref={input} placeholder="Search by category or origin name" required className="input input-bordered input-warning w-64 md:w-80 lg:w-96 mt-5" />
                         <button onClick={handleSearch} className="btn btn-md absolute right-0 bottom-0">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
@@ -157,21 +157,23 @@ const Shop = () => {
                             <p className="font-bold ">Sold: {product.sold} items</p>
                             <p className="font-bold text-lg text-amber-600">Price: ${product.price}</p>
                             <div className="card-actions justify-center">
-                                <Link to={`/details/${product._id}`}><button className="border rounded-full px-3 py-2 hover:bg-black hover:text-white hover:border-black border-amber-600">Show Details</button></Link>
+                                <Link to={`/details/${product._id}`}><button className="btn btn-outline btn-sm border rounded-full px-3 py-2 hover:bg-black hover:text-white hover:border-black border-amber-600">Show Details</button></Link>
                             </div>
                         </div>
                     </div>)
                 }
             </div>
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col justify-center items-center mb-5'>
                 <p className="mb-2 font-bold ">Current page: {currentPage + 1}</p>
-                <div>
-                <button className={currentPage > 0 ? "btn btn-primary " : "btn-disabled btn cursor-not-allowed"} onClick={handlePrev}>Prev</button>
+                <div className="flex gap-2 flex-row justify-center items-center">
+                <button className={currentPage > 0 ? "btn btn-primary w-16" : "btn-disabled btn cursor-not-allowed  w-16"} onClick={handlePrev}>Prev</button>
+                <div className="join">
                 {
-                    pages.map(page => <button key={page} className={`btn ml-2 btn-outline ${currentPage === page ? 'bg-black text-white' : ''}`} onClick={() => setCurrentPage(page)}>{page + 1}</button>)
+                    pages.map(page => <button key={page} className={`btn join-item btn-outline ${currentPage === page ? 'bg-black text-white' : ''}`} onClick={() => setCurrentPage(page)}>{page + 1}</button>)
                 }
+                </div>
 
-                <button className={ currentPage < pages.length - 1 ? "btn btn-primary ml-2" : "btn-disabled btn cursor-not-allowed ml-2"} onClick={handleNext}>Next</button>
+                <button className={ currentPage < pages.length - 1 ? "btn btn-primary  w-16" : "btn-disabled btn cursor-not-allowed  w-16 "} onClick={handleNext}>Next</button>
                 </div>
             </div>
         </div>

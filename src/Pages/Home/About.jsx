@@ -30,16 +30,16 @@ const About = () => {
             </div>
             <div>
                 <div className='grid md:grid-cols-2 gap-5 mt-10'>
-                    <div data-aos="fade-right" className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div  className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><FaLocationDot></FaLocationDot></div>
                         <div>
                             <p className="text-2xl">Postal Address</p>
-                            <p>Tech Universe</p>
-                            <p>2nd floor, Abdullah Mansion, <br />Mirpur, Dhaka</p>
+                            <p>Eater Zone</p>
+                            <p>2nd floor, Abdullah Mansion, <br />Dhanmondi, Dhaka</p>
                         </div>
 
                     </div >
-                    <div data-aos="fade-left" className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div  className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><AiOutlinePhone></AiOutlinePhone></div>
                         <div>
                             <p className="text-2xl">Phone & Email</p>
@@ -50,17 +50,17 @@ const About = () => {
 
                     </div>
 
-                    <div data-aos="fade-right" className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div  className='flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><BsFillClockFill></BsFillClockFill></div>
-                        <div>
-                            <p className="text-2x">Open Hours</p>
+                        <div className='ml-5'>
+                            <p className="text-2xl">Open Hours</p>
                             <p>Monday-Friday</p>
                             <p>8.00 am - 5.00 pm</p>
                             <p>Weekends Close</p>
                         </div>
                     </div>
 
-                    <div data-aos="fade-left" className=' flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
+                    <div className=' flex gap-3 border-2 rounded-xl p-3 shadow-xl'>
                         <div className='text-4xl'><TfiWrite></TfiWrite></div>
                         <div>
                             <p className="text-2xl">Sessions</p>

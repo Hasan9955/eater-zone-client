@@ -23,6 +23,7 @@ const MyCart = () => {
         }
     })
 
+    console.log(data)
     useEffect(() => {
         if (data) {
             setCartFood(data)
@@ -106,14 +107,17 @@ const MyCart = () => {
                                 <Link to={`/details/${food.id}`}><div className="text-xl font-bold max-w-[250px]">{food.foodName}</div></Link>
                                 <div>Origin: {food.origin}</div>
                                 <p>Category: {food.category}</p>
+                                <p>Owner: {food.owner}</p>
                                 <p className="text-lg font-bold text-pink-800">Price: $ {food.price}</p>
     
                             </div>
                         </div>
                         <div className="flex flex-col">
-                            Quantity: {food.quantity}
+                            Quantity: {food.value}
                             <br />
-                            Subtotal: ${food.price * food.quantity}
+                            Date: {food.date}
+                            <br />
+                            Subtotal: ${food.price * food.value}
                             <button onClick={() => handleDelete(food._id)} className="border-2 rounded-full px-1 py-1 mt-8 w-24 flex justify-center items-center border-pink-800 hover:bg-black hover:text-white hover:border-black click"><AiFillDelete className="text-xl mr-1"></AiFillDelete><p>Delete</p></button>
                         </div>
     
