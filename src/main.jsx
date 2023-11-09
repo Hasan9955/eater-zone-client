@@ -24,6 +24,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Shop from './Pages/Shop';
 import Details from './Pages/Details';
 import MyCart from './Pages/MyCart';
+import FoodPurchase from './Pages/FoodPurchase';
 
 
 
@@ -72,12 +73,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/details/:id',
-        element: <PrivateRoute><Details></Details></PrivateRoute>,
+        element: <Details></Details>,
         loader: ({params}) => fetch(`https://eater-zone-server.vercel.app/products/${params.id}`)
       },
       {
         path: '/cart',
         element: <PrivateRoute><MyCart></MyCart></PrivateRoute>
+      },
+      {
+        path: '/foodPurchase/:id',
+        element: <PrivateRoute><FoodPurchase></FoodPurchase></PrivateRoute>,
+        loader: ({params}) => fetch(`https://eater-zone-server.vercel.app/products/${params.id}`)
       }
     ]
   },

@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
 
+            console.log(currentUser)
             const userEmail = currentUser?.email || user?.email 
             const currentEmail = {email: userEmail}
             setUser(currentUser)

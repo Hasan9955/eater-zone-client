@@ -48,12 +48,12 @@ const Footer = () => {
             <div>
                 <div className="form-control">
                     
-                    <label className="md:input-group">
-                        <input type="text" placeholder="info@site.com" className="input input-bordered" />
+                    <label className="input-group">
+                        <input type="text" placeholder="eater@gmail.com" className="input input-bordered w-36 md:w-56" />
                         <span className="">Subscribe</span>
                     </label>
                 </div>
-                <p className="font-bold">Please subscribe to get more offer.</p>
+                <p className="font-bold">Please subscribe us to get more offer!!!</p>
             </div>
             <nav>
                 <div className="grid grid-flow-col gap-4">
